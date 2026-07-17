@@ -4,8 +4,7 @@ class Soldier:
         self.health = health
         self.ammo = ammo
     
-    def take_turn(self):
-        enemy = choose_soldier("Choose an enemy: ", self)
+    def take_turn(self, enemy):
         self.shoot(enemy)
 
     def shoot(self, enemy):
