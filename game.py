@@ -1,4 +1,5 @@
-from soldier import Soldier, Medic, show_status, choose_soldier
+from soldier import Soldier, Medic
+
 def show_status():
     print("\n===== Soldiers =====")
 
@@ -41,10 +42,11 @@ def run_game():
         current_player = turn_order[turn]
         show_status()
         print(f"\n===== {current_player.name}'s turn =====")
-    enemy = choose_soldier(
+    
+        enemy = choose_soldier(
         "Choose an enemy: ",
         current_player,
         soldiers
     )
 
-        current_player.take_turn(enemy)     
+        current_player.take_turn(enemy)

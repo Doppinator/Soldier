@@ -21,16 +21,6 @@ class Soldier:
         else:
             print(f"{self.name} has no ammo left!")
 
-def show_status():
-    print("\n===== Soldiers =====")
-
-    for soldier in soldiers.values():
-        print(
-            f"{soldier.name:<8}"
-            f" HP:{soldier.health:<3}"
-            f" Ammo:{soldier.ammo:<2}"
-        )
-
 class Medic(Soldier):
 
     def heal(self, target):
@@ -59,18 +49,3 @@ class Medic(Soldier):
 
             print("Invalid choice.")
             
-def choose_soldier(prompt, current_player):
-    while True:
-        name = input(prompt)
-
-        if name not in soldiers:
-            print("Invalid soldier.")
-            continue
-
-        chosen = soldiers[name]
-
-        if chosen is current_player:
-            print("You cannot choose yourself.")
-            continue
-
-        return chosen
