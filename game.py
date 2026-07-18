@@ -46,14 +46,19 @@ def run_game():
             if action == "2":
                 ally = choose_soldier("Choose a soldier to heal: ", current_player, soldiers)
                 current_player.heal(ally)
+            else:
+                enemy = choose_soldier(
+                    "Choose an enemy: ",
+                    current_player,
+                    soldiers
+                )
+                current_player.take_turn(enemy)
         else:
-            action = "1"
+            enemy = choose_soldier(
+                "Choose an enemy: ",
+                current_player,
+                soldiers
+            )
+            current_player.take_turn(enemy)
 
-        enemy = choose_soldier(
-        "Choose an enemy: ",
-        current_player,
-        soldiers
-    )
-
-        current_player.take_turn(enemy)
         turn = (turn + 1) % len(turn_order)
