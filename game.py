@@ -1,6 +1,6 @@
 from soldier import Soldier, Medic
 
-def show_status():
+def show_status(soldiers):
     print("\n===== Soldiers =====")
 
     for soldier in soldiers.values():
@@ -33,14 +33,12 @@ soldiers = {
     "Medic": Medic("Medic", 85, 20)
 }
 
-turn_order = list(soldiers.values())
-turn = 0
-
 def run_game():
-    global turn
+    turn_order = list(soldiers.values())
+    turn = 0
     while True:
         current_player = turn_order[turn]
-        show_status()
+        show_status(soldiers)
         print(f"\n===== {current_player.name}'s turn =====")
     
         enemy = choose_soldier(
