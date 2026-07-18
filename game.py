@@ -10,7 +10,7 @@ def show_status():
             f" Ammo:{soldier.ammo:<2}"
         )
 
-def choose_soldier(prompt, current_player):
+def choose_soldier(prompt, current_player, soldiers):
     while True:
         name = input(prompt)
 
@@ -50,3 +50,4 @@ def run_game():
     )
 
         current_player.take_turn(enemy)
+        turn = (turn + 1) % len(turn_order)
