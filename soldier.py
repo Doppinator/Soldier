@@ -28,24 +28,4 @@ class Medic(Soldier):
 
         print(f"{self.name} heals {target.name}!")
         print(f"{target.name}'s health: {target.health}")
-
-    def take_turn(self):
-
-        while True:
-
-            action = input(
-                "1. Shoot\n"
-                "2. Heal\n"
-            )
-
-            if action == "1":
-                super().take_turn()
-                break
-
-            elif action == "2":
-                ally = choose_soldier("Choose a soldier to heal: ", self)
-                self.heal(ally)
-                break
-
-            print("Invalid choice.")
             

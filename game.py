@@ -40,7 +40,15 @@ def run_game():
         current_player = turn_order[turn]
         show_status(soldiers)
         print(f"\n===== {current_player.name}'s turn =====")
-    
+
+        if isinstance(current_player, Medic):
+            action = input("1. Shoot\n2. Heal\nChoose an action: ")
+            if action == "2":
+                ally = choose_soldier("Choose a soldier to heal: ", current_player, soldiers)
+                current_player.heal(ally)
+        else:
+            action = "1"
+
         enemy = choose_soldier(
         "Choose an enemy: ",
         current_player,
