@@ -34,25 +34,16 @@ soldiers = {
 }
 
 def handle_player_turn(player, soldiers):
-    if isinstance(player, Medic):
-        action = input("1. Shoot\n2. Heal\nChoose an action: ")
-        if action == "2":
-            ally = choose_soldier("Choose a soldier to heal: ", player, soldiers)
-            player.heal(ally)
-        else:
-            enemy = choose_soldier(
-                "Choose an enemy: ",
-                player,
-                soldiers
-            )
-            player.take_turn(enemy)
+    action = input("Choose an action (shoot/heal): ").strip().lower()
+    perform_action(player, action, choose_soldier("Choose a target: ", player, soldiers))
+
+def perform_action(player, action, target):
+    if action == "shoot":
+        player.shoot(target)
+    elif action == "heal" and isinstance(player, Medic):
+        player.heal(target)
     else:
-        enemy = choose_soldier(
-            "Choose an enemy: ",
-            player,
-            soldiers
-        )
-        player.take_turn(enemy)
+        print("Invalid action.")
 
 def run_game():
     turn_order = list(soldiers.values())
