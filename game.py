@@ -33,6 +33,27 @@ soldiers = {
     "Medic": Medic("Medic", 85, 20)
 }
 
+def handle_player_turn(player, soldiers):
+    if isinstance(player, Medic):
+        action = input("1. Shoot\n2. Heal\nChoose an action: ")
+        if action == "2":
+            ally = choose_soldier("Choose a soldier to heal: ", player, soldiers)
+            player.heal(ally)
+        else:
+            enemy = choose_soldier(
+                "Choose an enemy: ",
+                player,
+                soldiers
+            )
+            player.take_turn(enemy)
+    else:
+        enemy = choose_soldier(
+            "Choose an enemy: ",
+            player,
+            soldiers
+        )
+        player.take_turn(enemy)
+
 def run_game():
     turn_order = list(soldiers.values())
     turn = 0
@@ -41,24 +62,6 @@ def run_game():
         show_status(soldiers)
         print(f"\n===== {current_player.name}'s turn =====")
 
-        if isinstance(current_player, Medic):
-            action = input("1. Shoot\n2. Heal\nChoose an action: ")
-            if action == "2":
-                ally = choose_soldier("Choose a soldier to heal: ", current_player, soldiers)
-                current_player.heal(ally)
-            else:
-                enemy = choose_soldier(
-                    "Choose an enemy: ",
-                    current_player,
-                    soldiers
-                )
-                current_player.take_turn(enemy)
-        else:
-            enemy = choose_soldier(
-                "Choose an enemy: ",
-                current_player,
-                soldiers
-            )
-            current_player.take_turn(enemy)
-
+        handle_player_turn(current_player, soldiers)
+    
         turn = (turn + 1) % len(turn_order)
